@@ -6,7 +6,7 @@ from UI import connect_ui, chat_ui
 
 class Client:
     def __init__(self):
-        self.buffer = 1024
+        self.buffersize = 1024
         self.client_socket = socket(AF_INET, SOCK_STREAM)
 
         self.main_window = QtWidgets.QMainWindow()
@@ -94,7 +94,7 @@ class ReceiveMessageThread(QtCore.QThread):
             self.receive_message()
 
     def receive_message(self):
-        message = self.client_socket.recv(user.buffer).decode('utf-8')
+        message = self.client_socket.recv(user.buffersize).decode('utf-8')
         self.signal.emit(message)
 
 
